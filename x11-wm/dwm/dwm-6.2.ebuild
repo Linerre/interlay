@@ -27,13 +27,12 @@ DEPEND="
 
 BDEPEND=""
 
-
 src_prepare() {
 	default
 
 	sed -i \
 		-e "s/ -Os / /" \
-		-e "/^\(LDFLAGS\|CFLAGS\|CPPFLAGS\)/{s| = | += \g;s| -s ||g}" \
+		-e "/\(LDFLAGS\|CFLAGS\|CPPFLAGS\)/{s| = | += |g;s|-s ||g}" \
 		config.mk || die
 
 	restore_config config.h
@@ -48,7 +47,7 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTIDIR="${D}" PREFIX="${EPREFIX}/usr" install
+	emake DESTDIR="${D}" PREFIX="${EPREFIX}/usr" install
 
 	exeinto /etc/X11/Sessions
 	newexe "${FILESDIR}"/dwm-session2 dwm
