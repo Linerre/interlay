@@ -6,7 +6,7 @@ inherit savedconfig toolchain-funcs
 
 DESCRIPTION="a generic, highly customizable, and efficient menu for the X Window System"
 HOMEPAGE="https://tools.suckless.org/dmenu/"
-SRC_URI="https://github.com/Linerre/dmenu/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/Linerre/dmenu/archive/refs/tags/v${PV}_p20210820.tar.gz -> ${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"

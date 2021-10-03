@@ -6,7 +6,7 @@ inherit desktop multilib savedconfig toolchain-funcs
 
 DESCRIPTION="simple terminal implementation for X (dev version)"
 HOMEPAGE="https://st.suckless.org/"
-SRC_URI="https://github.com/Linerre/st/archive/refs/tags/v${PV}-20200824.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/Linerre/st/archive/refs/tags/v${PV}_p20210824.tar.gz -> ${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
