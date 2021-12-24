@@ -4,9 +4,10 @@
 EAPI=7
 inherit savedconfig toolchain-funcs
 
+TAGV="p20211218"
 DESCRIPTION="Suckless dynamic window mangager for X. "
 HOMEPAGE="https://dwm.suckless.org"
-SRC_URI="https://github.com/Linerre/dwm/archive/refs/tags/v${PV}_p20210820.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/Linerre/dwm/archive/refs/tags/v${PV}_${TAGV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
