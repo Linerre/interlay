@@ -29,7 +29,7 @@ src_prepare() {
 	#sed -i -e 's/^.*cp blocks.def.h.*$//' \
 	#	Makefile || die
 
-	restore_config config.h
+	restore_config blocks.h
 }
 
 src_compile() {
@@ -42,5 +42,5 @@ src_install() {
 	# No README or doc to install
 	#dodoc README
 
-	save_config config.h
+	save_config blocks.h
 }
