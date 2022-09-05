@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>errelinaaron@gmail.com</email>
+		<name>Noel Errenil</name>
+	</maintainer>
+	<use>
+		<flag name="doc">Install docs (md files) for development referrence</flag>
+		<flag name="shellcheck">Install dev-util/shellcheck-bin for testing</flag>
+	</use>
+	<upstream>
+		<remote-id type="github">direnvi/direnv</remote-id>
+		<bugs-to>https://github.com/direnv/direnv/issues</bugs-to>
+	</upstream>
+</pkgmetadata>
