@@ -39,5 +39,5 @@ src_install() {
 }
 
 pkg_postinst() {
-	elog "Use 'man 1 direnv' to check how to enable direnv for your shell."
+	elog "Use 'man 1 direnv' to check how to hook direnv to your shell."
 }
