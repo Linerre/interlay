@@ -11,9 +11,9 @@ license="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
 
-#FIXME: need >=mupdf-1.20 and a patch
+#FIXME: need =mupdf-1.20 and a patch
 DEPEND="
-	app-text/mupdf
+	~app-text/mupdf-1.20:=
 	dev-libs/gumbo
 	dev-qt/qtopengl:5
 	dev-qt/qtcore:5
@@ -26,11 +26,12 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 src_prepare() {
-	default
 
 	sed -i '/qmake/s/"CONFIG+=linux_app_image"//' "${S}"/build_linux.sh || die
 	sed -i 's/qmake/qmake5/' "${S}"/build_linux.sh || die
-	sed -i 's/-lmupdf-third//' pdf_viewer_build_config.pro || die
+	sed -i 's/-lmupdf-third//g' pdf_viewer_build_config.pro || die
+
+	default
 
 }
 
