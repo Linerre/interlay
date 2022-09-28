@@ -1,0 +1,22 @@
+[__config__]
+oldver = "old_ver.json"
+newver = "new_ver.json"
+
+[direnv]
+source = "github"
+github = "direnv/direnv"
+use_latest_release = true
+prefix = "v"
+
+[rust-analyzer]
+source = "github"
+github = "rust-analyzer/rust-analyzer"
+rust-analyzer/rust-analyzer"
+rust-analyzer/rust-analyzer"
+to_pattern = "\\1\\2\\3"
+
+[sioyek]
+source = "github"
+github = "ahrm/sioyek"
+use_latest_release = true
+prefix = "v"
