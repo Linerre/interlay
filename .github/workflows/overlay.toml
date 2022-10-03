@@ -11,8 +11,7 @@ prefix = "v"
 [rust-analyzer]
 source = "github"
 github = "rust-analyzer/rust-analyzer"
-rust-analyzer/rust-analyzer"
-rust-analyzer/rust-analyzer"
+from_pattern = "(\\d+)-(\\d+)-(\\d+)"
 to_pattern = "\\1\\2\\3"
 
 [sioyek]
