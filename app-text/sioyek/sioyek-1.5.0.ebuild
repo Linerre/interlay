@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 DEPEND="
-	~app-text/mupdf-1.20.0:=
+	>=app-text/mupdf-1.20.0:=
 	dev-libs/gumbo
 	dev-qt/qtopengl:5
 	dev-qt/qtcore:5
