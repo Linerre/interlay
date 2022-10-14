@@ -1,0 +1,311 @@
+# Copyright 2020-2022 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+EAPI=8
+
+CRATES="
+	actix-codec-0.5.0
+	actix-http-3.2.2
+	actix-macros-0.2.3
+	actix-router-0.5.1
+	actix-rt-2.7.0
+	actix-server-2.1.1
+	actix-service-2.0.2
+	actix-utils-3.0.1
+	actix-web-4.2.1
+	actix-web-codegen-4.1.0
+	actix-web-static-files-4.0.0
+	adler-1.0.2
+	ahash-0.7.6
+	aho-corasick-0.7.20
+	alloc-no-stdlib-2.0.4
+	alloc-stdlib-0.2.2
+	android_system_properties-0.1.5
+	anyhow-1.0.66
+	async-trait-0.1.59
+	autocfg-1.1.0
+	base64-0.13.1
+	bitflags-1.3.2
+	bitpacking-0.8.4
+	block-buffer-0.10.3
+	brotli-3.3.4
+	brotli-decompressor-2.3.2
+	bstr-0.2.17
+	bumpalo-3.11.1
+	byteorder-1.4.3
+	bytes-1.3.0
+	bytestring-1.2.0
+	cang-jie-0.14.0
+	cc-1.0.77
+	cedarwood-0.4.6
+	census-0.4.1
+	cfg-if-1.0.0
+	change-detection-1.2.0
+	chrono-0.4.23
+	clap-4.0.29
+	clap_derive-4.0.21
+	clap_lex-0.3.0
+	codespan-reporting-0.11.1
+	combine-4.6.6
+	console-0.15.2
+	convert_case-0.4.0
+	cookie-0.16.1
+	core-foundation-sys-0.8.3
+	cpufeatures-0.2.5
+	crc32fast-1.3.2
+	crossbeam-channel-0.5.6
+	crossbeam-deque-0.8.2
+	crossbeam-epoch-0.9.13
+	crossbeam-utils-0.8.14
+	crunchy-0.2.2
+	crypto-common-0.1.6
+	csv-1.1.6
+	csv-core-0.1.10
+	ctor-0.1.26
+	cxx-1.0.82
+	cxx-build-1.0.82
+	cxxbridge-flags-1.0.82
+	cxxbridge-macro-1.0.82
+	darling-0.14.2
+	darling_core-0.14.2
+	darling_macro-0.14.2
+	derive_more-0.99.17
+	diff-0.1.13
+	digest-0.10.6
+	downcast-rs-1.2.0
+	either-1.8.0
+	encode_unicode-0.3.6
+	encoding_rs-0.8.31
+	env_logger-0.10.0
+	errno-0.2.8
+	errno-dragonfly-0.1.2
+	fail-0.5.1
+	fastdivide-0.4.0
+	fastfield_codecs-0.2.0
+	fastrand-1.8.0
+	flate2-1.0.25
+	fnv-1.0.7
+	form_urlencoded-1.1.0
+	fs2-0.4.3
+	futures-core-0.3.25
+	futures-sink-0.3.25
+	futures-task-0.3.25
+	futures-util-0.3.25
+	fxhash-0.2.1
+	generator-0.7.1
+	generic-array-0.14.6
+	getrandom-0.2.8
+	glob-0.3.0
+	h2-0.3.15
+	hashbrown-0.12.3
+	heck-0.4.0
+	hermit-abi-0.1.19
+	hermit-abi-0.2.6
+	hex-0.4.3
+	htmlescape-0.3.1
+	http-0.2.8
+	httparse-1.8.0
+	httpdate-1.0.2
+	humantime-2.1.0
+	iana-time-zone-0.1.53
+	iana-time-zone-haiku-0.1.1
+	ident_case-1.0.1
+	idna-0.3.0
+	indexmap-1.9.2
+	indicatif-0.17.2
+	instant-0.1.12
+	io-lifetimes-1.0.3
+	is-terminal-0.4.1
+	itertools-0.10.5
+	itoa-0.4.8
+	itoa-1.0.4
+	jieba-rs-0.6.7
+	jobserver-0.1.25
+	js-sys-0.3.60
+	language-tags-0.3.2
+	lazy_static-1.4.0
+	levenshtein_automata-0.2.1
+	libc-0.2.137
+	link-cplusplus-1.0.7
+	linux-raw-sys-0.1.3
+	local-channel-0.1.3
+	local-waker-0.1.3
+	lock_api-0.4.9
+	log-0.4.17
+	loom-0.5.6
+	lru-0.7.8
+	lz4_flex-0.9.5
+	matchers-0.1.0
+	measure_time-0.8.2
+	memchr-2.5.0
+	memmap2-0.5.8
+	memoffset-0.7.1
+	mime-0.3.16
+	mime_guess-2.0.4
+	miniz_oxide-0.6.2
+	mio-0.8.5
+	murmurhash32-0.2.0
+	nu-ansi-term-0.46.0
+	num-integer-0.1.45
+	num-traits-0.2.15
+	num_cpus-1.14.0
+	number_prefix-0.4.0
+	once_cell-1.16.0
+	oneshot-0.1.5
+	os_str_bytes-6.4.1
+	output_vt100-0.1.3
+	overload-0.1.1
+	ownedbytes-0.3.0
+	parking_lot-0.12.1
+	parking_lot_core-0.9.5
+	paste-1.0.9
+	path-matchers-1.0.2
+	path-slash-0.1.5
+	percent-encoding-2.2.0
+	phf-0.11.1
+	phf_codegen-0.11.1
+	phf_generator-0.11.1
+	phf_shared-0.11.1
+	pin-project-lite-0.2.9
+	pin-utils-0.1.0
+	portable-atomic-0.3.15
+	ppv-lite86-0.2.17
+	pretty_assertions-1.3.0
+	proc-macro-error-1.0.4
+	proc-macro-error-attr-1.0.4
+	proc-macro2-1.0.47
+	quote-1.0.21
+	rand-0.8.5
+	rand_chacha-0.3.1
+	rand_core-0.6.4
+	rayon-1.6.0
+	rayon-core-1.10.1
+	redox_syscall-0.2.16
+	regex-1.7.0
+	regex-automata-0.1.10
+	regex-syntax-0.4.2
+	regex-syntax-0.6.28
+	remove_dir_all-0.5.3
+	rust-stemmers-1.2.0
+	rustc_version-0.4.0
+	rustix-0.36.4
+	rustversion-1.0.9
+	ryu-1.0.11
+	scoped-tls-1.0.1
+	scopeguard-1.1.0
+	scratch-1.0.2
+	semver-1.0.14
+	serde-1.0.148
+	serde_derive-1.0.148
+	serde_json-1.0.89
+	serde_urlencoded-0.7.1
+	serde_with-2.1.0
+	serde_with_macros-2.1.0
+	sha1-0.10.5
+	sharded-slab-0.1.4
+	signal-hook-registry-1.4.0
+	siphasher-0.3.10
+	slab-0.4.7
+	smallvec-1.10.0
+	socket2-0.4.7
+	stable_deref_trait-1.2.0
+	static-files-0.2.3
+	strsim-0.10.0
+	syn-1.0.104
+	tantivy-0.18.1
+	tantivy-bitpacker-0.2.0
+	tantivy-common-0.3.0
+	tantivy-fst-0.3.0
+	tantivy-query-grammar-0.18.0
+	tempfile-3.3.0
+	termcolor-1.1.3
+	terminal_size-0.1.17
+	thiserror-1.0.37
+	thiserror-impl-1.0.37
+	thread_local-1.1.4
+	time-0.3.17
+	time-core-0.1.0
+	time-macros-0.2.6
+	tinyvec-1.6.0
+	tinyvec_macros-0.1.0
+	tokio-1.22.0
+	tokio-util-0.7.4
+	tracing-0.1.37
+	tracing-attributes-0.1.23
+	tracing-core-0.1.30
+	tracing-log-0.1.3
+	tracing-subscriber-0.3.16
+	typenum-1.15.0
+	unicase-2.6.0
+	unicode-bidi-0.3.8
+	unicode-ident-1.0.5
+	unicode-normalization-0.1.22
+	unicode-width-0.1.10
+	url-2.3.1
+	utf8-ranges-1.0.5
+	uuid-1.2.2
+	valuable-0.1.0
+	version_check-0.9.4
+	wasi-0.11.0+wasi-snapshot-preview1
+	wasm-bindgen-0.2.83
+	wasm-bindgen-backend-0.2.83
+	wasm-bindgen-macro-0.2.83
+	wasm-bindgen-macro-support-0.2.83
+	wasm-bindgen-shared-0.2.83
+	web-sys-0.3.60
+	winapi-0.3.9
+	winapi-i686-pc-windows-gnu-0.4.0
+	winapi-util-0.1.5
+	winapi-x86_64-pc-windows-gnu-0.4.0
+	windows-0.32.0
+	windows-sys-0.42.0
+	windows_aarch64_gnullvm-0.42.0
+	windows_aarch64_msvc-0.32.0
+	windows_aarch64_msvc-0.42.0
+	windows_i686_gnu-0.32.0
+	windows_i686_gnu-0.42.0
+	windows_i686_msvc-0.32.0
+	windows_i686_msvc-0.42.0
+	windows_x86_64_gnu-0.32.0
+	windows_x86_64_gnu-0.42.0
+	windows_x86_64_gnullvm-0.42.0
+	windows_x86_64_msvc-0.32.0
+	windows_x86_64_msvc-0.42.0
+	yansi-0.5.1
+	zstd-0.11.2+zstd.1.5.2
+	zstd-safe-5.0.2+zstd.1.5.2
+	zstd-sys-2.0.4+zstd.1.5.2
+"
+
+inherit cargo
+
+KEYWORDS="~amd64"
+SRC_URI="
+	https://github.com/zu1k/zlib-searcher/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz
+	$(cargo_crate_uris ${CRATES})
+"
+
+DESCRIPTION="A local client for searching zlib/libgen"
+HOMEPAGE="https://github.com/zu1k/zlib-searcher"
+LICENSE="MIT"
+
+RESTRICT="mirror"
+
+DEPEND="
+	vritual/rust
+	net-libs/nodejs
+"
+SLOT="0"
+
+src_prepare() {
+	default
+
+	# zlib-searcher/searcher-core crates are provided by the package itself
+	cp -r ./crates/zlib-searcher ../cargo_home/gentoo/"${PN}-${PV}" || die "Copying local crate failed"
+	cp -r ./crates/zlib-searcher-core ../cargo_home/gentoo/"zlib-searcher-core-${PV}" || die "Copying local crate failed"
+}
+
+src_compile() {
+	# TODO: frontend and index
+	cargo build --release -p zlib-searcher || die "Cargo build failed"
+}
