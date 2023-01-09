@@ -28,7 +28,7 @@ BDEPEND="${DEPEND}"
 
 src_prepare() {
 	# thanks to aexl from AUR: https://aur.archlinux.org/packages/sioyek
-	eapply --forward --strip=1 "${FILESDIR}/mupdf-1.20.patch"
+	# eapply --forward --strip=1 "${FILESDIR}/mupdf-1.20.patch"
 
 	default
 
