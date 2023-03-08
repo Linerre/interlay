@@ -6,8 +6,8 @@ inherit font
 
 MY_PN=LXGWMarkerGothic
 DESCRIPTION="A Simplified Chinese font derived from Tanugo"
-HOMEPAGE="https://fonts.google.com/specimen/Roboto+Mono"
-SRC_URI="https://github.com/lxgw/${MY_PN}/releases/download/v${PV}/${MY_PN}-Regular.ttf"
+HOMEPAGE="https://github.com/lxgw/LxgwMarkerGothic"
+SRC_URI="https://github.com/lxgw/LxgwMarkerGothic/releases/download/v${PV}/${MY_PN}-Regular.ttf"
 LICENSE="OFL-1.1"
 KEYWORDS="~amd64"
 SLOT="0"
