@@ -9,13 +9,31 @@
         (motion . "M")
         (beacon . "B")))
 
+(setq
+ meow-visit-sanitize-completion nil
+ meow-esc-delay 0.001
+ meow-keypad-describe-delay 0.5
+ meow-select-on-change t
+ meow-cursor-type-normal 'box
+ meow-cursor-type-insert '(bar . 2)
+ meow-selection-command-fallback
+ '((meow-replace . meow-page-up)
+   (meow-change . meow-change-char)
+   (meow-save . meow-save-empty)
+   (meow-kill . meow-C-k)
+   (meow-cancel . keyboard-quit)
+   (meow-pop . meow-pop-grab)
+   (meow-delete . meow-C-d)
+   (meow-beacon-change . meow-beacon-change-char)))
+
 (defun meow-setup ()
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
   ;; use C-n/p to move up/down in Motion mode instead
   ;; Otherwise j/k will not be recognized as characters in gdb mode
   (meow-motion-overwrite-define-key
    '("j" . meow-next)
-   '("k" . meow-prev))
+   '("k" . meow-prev)
+   '("/" . find-file))
   (meow-leader-define-key
    ;; SPC j/k will run the original command in MOTION state.
    ;;'("j" . meow-motion-origin-command)
@@ -33,9 +51,6 @@
    '("0" . meow-digit-argument)
    ;; cheatsheet
    '("?" . meow-cheatsheet)
-   ;; high frequency keybindings
-   ;'(")" . "C-)")
-   ;'("}" . "C-}")
    '("." . "M-.")
    '("," . "M-,")
    '("<escape>" . "C-g")
@@ -53,14 +68,9 @@
    '("=" . split-window-right)
    '("-" . split-window-below)
    ;; high frequency commands
-   '("'" . goto-line)
-   '("l m" . flymake-mode)
-   '("l c" . flycheck-mode)
    ;; C-x C-x could be bound to different fns in
    ;; different modes, so use the keybindings
    '("e" . "C-x C-e")
-   '("SPC" . save-buffer)
-   ;; '("$" . +change-theme)
    '(";" . comment-dwim)
    '("k" . kill-this-buffer)
    '("p" . project-find-file)
@@ -79,7 +89,6 @@
    ;; toggles
    '("L" . display-line-numbers-mode)
    '("S" . smartparens-strict-mode)
-   ;; '("P" . pass)
    ;; org
    '("A" . org-agenda)
    '("C" . org-capture)
@@ -150,30 +159,11 @@
    '("X" . meow-kmacro-lines)
    '("y" . meow-save)
    '("Y" . meow-sync-grab)
-   '("z" . meow-pop-selection)
+   '("z" . delete-window)
    '("Z" . meow-pop-all-selection)
    '("&" . meow-query-replace)
    '("%" . meow-query-replace-regexp)
-   '("'" . repeat)
-   '("\\" . quoted-insert)))
-   ;'("<escape>" . meow-last-buffer)))
-
-(setq
- meow-visit-sanitize-completion nil
- meow-esc-delay 0.001
- meow-keypad-describe-delay 0.5
- meow-select-on-change t
- meow-cursor-type-normal 'box
- meow-cursor-type-insert '(bar . 4)
- meow-selection-command-fallback
- '((meow-replace . meow-page-up)
-   (meow-change . meow-change-char)
-   (meow-save . meow-save-empty)
-   (meow-kill . meow-C-k)
-   (meow-cancel . keyboard-quit)
-   (meow-pop . meow-pop-grab)
-   (meow-delete . meow-C-d)
-   (meow-beacon-change . meow-beacon-change-char)))
+   '("/" . find-file)))
 
 (require 'meow)
 
