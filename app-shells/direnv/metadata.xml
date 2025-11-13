@@ -2,14 +2,15 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer type="person">
-		<email>errelinaaron@gmail.com</email>
-		<name>Noel Errenil</name>
+		<email>leon.errelin@outlook.com</email>
+		<name>Linerre</name>
 	</maintainer>
-	<use>
-		<flag name="doc">Install docs (md files) for development referrence</flag>
-	</use>
 	<upstream>
 		<remote-id type="github">direnvi/direnv</remote-id>
 		<bugs-to>https://github.com/direnv/direnv/issues</bugs-to>
 	</upstream>
+	<use>
+		<flag name="doc">Build and install docs (md converted to man) for development referrence</flag>
+	</use>
+
 </pkgmetadata>
