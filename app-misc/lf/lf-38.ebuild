@@ -1,4 +1,4 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -7,20 +7,26 @@ inherit go-module shell-completion desktop xdg
 
 DESCRIPTION="Terminal file manager"
 HOMEPAGE="https://github.com/gokcehan/lf"
+
 SRC_URI="
 	https://github.com/gokcehan/lf/archive/refs/tags/r${PV}.tar.gz -> ${P}.tar.gz
-	https://github.com/Linerre/gentoo-deps/releases/download/${P}/${P}-vendor.tar.xz
+	https://github.com/Linerre/gentoo-deps/releases/download/${PN}-r${PV}/${PN}-r${PV}-vendor.tar.xz
 "
-
 S="${WORKDIR}/${PN}-r${PV}"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~arm ~arm64 ~x86"
+KEYWORDS="~amd64 ~arm64"
 
 src_compile() {
-	export CGO_ENABLED=0
-	ego build -ldflags="-s -w -X main.gVersion=r${PV}" -o "${PN}" .
+	ego build -v \
+		-buildmode=pie \
+		-mod=vendor \
+		-ldflags="-compressdwarf=false \
+				  -linkmode external \
+				  -extldflags '${LDFLAGS}' \
+				  -X main.gVersion=r${PV}" \
+		-o "${PN}" .
 }
 
 src_install() {
