@@ -11,6 +11,17 @@
       "gitref": "refs/tags/v2.37.1",
       "url": "https://github.com/direnv/direnv/releases/tag/v2.37.1"
     },
+    "lf": {
+      "version": "40",
+      "gitref": "refs/tags/r40",
+      "url": "https://github.com/gokcehan/lf/releases/tag/r40"
+    },
+    "lightdm-slick-greeter": {
+      "version": "2.2.5",
+      "gitref": "refs/tags/2.2.5",
+      "revision": "b9daa3b428cc51f4b170be4c7001751e6972598b",
+      "url": "https://github.com/linuxmint/slick-greeter/releases/tag/2.2.5"
+    },
     "sioyek": {
       "version": "2.0.0",
       "gitref": "refs/tags/v2.0.0",

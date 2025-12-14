@@ -1,6 +1,12 @@
 [__config__]
 oldver = "old_ver.json"
 newver = "new_ver.json"
+keyfile = "keyfile.toml"
+
+[anki]
+source = "github"
+github = "ankitects/anki"
+use_latest_release = true
 
 [direnv]
 source = "github"
@@ -8,11 +14,17 @@ github = "direnv/direnv"
 use_latest_release = true
 prefix = "v"
 
-[rust-analyzer]
+[lightdm-slick-greeter]
 source = "github"
-github = "rust-analyzer/rust-analyzer"
-from_pattern = "(\\d+)-(\\d+)-(\\d+)"
-to_pattern = "\\1\\2\\3"
+github = "linuxmint/slick-greeter"
+use_latest_release = true
+use_latest_tag = true
+
+[lf]
+source = "github"
+github = "gokcehan/lf"
+use_latest_release = true
+prefix = "r"
 
 [sioyek]
 source = "github"
