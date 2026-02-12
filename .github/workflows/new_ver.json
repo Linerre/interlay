@@ -12,15 +12,15 @@
       "url": "https://github.com/direnv/direnv/releases/tag/v2.37.1"
     },
     "lf": {
-      "version": "40",
-      "gitref": "refs/tags/r40",
-      "url": "https://github.com/gokcehan/lf/releases/tag/r40"
+      "version": "41",
+      "gitref": "refs/tags/r41",
+      "url": "https://github.com/gokcehan/lf/releases/tag/r41"
     },
     "lightdm-slick-greeter": {
-      "version": "2.2.5",
-      "gitref": "refs/tags/2.2.5",
-      "revision": "b9daa3b428cc51f4b170be4c7001751e6972598b",
-      "url": "https://github.com/linuxmint/slick-greeter/releases/tag/2.2.5"
+      "version": "master.mint22",
+      "gitref": "refs/tags/master.mint22",
+      "revision": "1abc83c905360b6fe3fd01a02624017c2d967433",
+      "url": "https://github.com/linuxmint/slick-greeter/releases/tag/master.mint22"
     },
     "sioyek": {
       "version": "2.0.0",
